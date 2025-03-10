@@ -12,4 +12,11 @@ public record Country(@JsonProperty("country_name")
                 ce.getCountryName(),
                 ce.getCountryCode());
     }
+
+    public CountryEntity toEntity() {
+        CountryEntity entity = new CountryEntity();
+        entity.setCountryName(this.countryName);
+        entity.setCountryCode(this.countryCode);
+        return entity;
+    }
 }
