@@ -29,14 +29,7 @@ public class CountryService {
 
     @Transactional
     public @Nonnull Country saveCountry(@Nonnull Country country) {
-        final String countryName = country.countryName();
-        final String countryCode = country.countryCode();
-
-        CountryEntity ce = new CountryEntity();
-        ce.setCountryName(countryName);
-        ce.setCountryCode(countryCode);
-
-        return Country.fromEntity(countryRepository.save(ce));
+        return Country.fromEntity(countryRepository.save(country.toEntity()));
     }
 
     @Transactional
