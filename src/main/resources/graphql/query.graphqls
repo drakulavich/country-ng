@@ -1,7 +1,21 @@
-scalar DateTime
+scalar Date
+
+type Query {
+    countries: [Country!]
+}
+
+type Mutation {
+    saveCountry(input: CountryInput!): Country
+    updateCountry(input: CountryInput!): Country
+}
 
 type Country {
     countryName: String!
     countryCode: String!
-    lastModifyDate: DateTime
+    lastModifyDate: Date
+}
+
+input CountryInput {
+    countryName: String!
+    countryCode: String!
 }
