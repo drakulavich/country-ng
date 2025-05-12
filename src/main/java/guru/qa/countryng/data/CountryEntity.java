@@ -5,8 +5,12 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
+import org.hibernate.annotations.UpdateTimestamp;
 import org.hibernate.proxy.HibernateProxy;
 
+import java.time.LocalDateTime;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -24,6 +28,11 @@ public class CountryEntity {
 
     @Column(name = "country_code")
     private String countryCode;
+    
+    @UpdateTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "last_modify_date")
+    private LocalDateTime lastModifyDate;
 
     public void setId(UUID id) {
         this.id = id;
@@ -39,6 +48,14 @@ public class CountryEntity {
 
     public String getCountryCode() {
         return countryCode;
+    }
+    
+    public LocalDateTime getLastModifyDate() {
+        return lastModifyDate;
+    }
+    
+    public void setLastModifyDate(LocalDateTime lastModifyDate) {
+        this.lastModifyDate = lastModifyDate;
     }
 
     public void setCountryName(String countryName) {
