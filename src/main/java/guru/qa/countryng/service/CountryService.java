@@ -9,6 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.time.LocalDateTime;
+import org.springframework.data.domain.Sort;
+import java.util.stream.Collectors;
 
 @Service
 public class CountryService {
@@ -21,10 +24,10 @@ public class CountryService {
     }
 
     public List<Country> getAllCountries() {
-        return countryRepository.findAll()
-                .stream()
-                .map(Country::fromEntity)
-                .toList();
+        return countryRepository.findAll(Sort.by(Sort.Direction.DESC, "lastModifyDate"))
+            .stream()
+            .map(Country::fromEntity)
+            .collect(Collectors.toList());
     }
 
     @Transactional
