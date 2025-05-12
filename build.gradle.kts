@@ -21,6 +21,8 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.boot:spring-boot-starter-web-services")
+    implementation("org.springframework.boot:spring-boot-starter-graphql")
+    implementation("com.tailrocks.graphql:graphql-datetime-spring-boot-starter:6.0.0")
     runtimeOnly("org.postgresql:postgresql:42.7.3")
     runtimeOnly("org.flywaydb:flyway-core:10.17.1")
     runtimeOnly("org.flywaydb:flyway-database-postgresql:10.17.1")

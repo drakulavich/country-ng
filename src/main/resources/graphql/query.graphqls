@@ -1,0 +1,7 @@
+scalar DateTime
+
+type Country {
+    countryName: String!
+    countryCode: String!
+    lastModifyDate: DateTime
+}
