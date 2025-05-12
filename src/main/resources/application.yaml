@@ -33,3 +33,6 @@ spring:
     baseline-version: 0
     schemas: public
     locations: classpath:db/migration/countryng
+  graphql:
+    graphiql:
+      enabled: true
