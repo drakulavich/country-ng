@@ -26,7 +26,7 @@ public class CountryEntity {
     @Column(name = "country_name")
     private String countryName;
 
-    @Column(name = "country_code")
+    @Column(name = "country_code", unique = true)
     private String countryCode;
     
     @UpdateTimestamp
