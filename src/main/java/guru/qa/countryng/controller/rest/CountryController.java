@@ -1,8 +1,8 @@
-package guru.qa.countryng.controller;
+package guru.qa.countryng.controller.rest;
 
 import guru.qa.countryng.data.Country;
 import guru.qa.countryng.dto.UpdateCountryRequest;
-import guru.qa.countryng.service.CountryService;
+import guru.qa.countryng.service.impl.RestCountryServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,10 +18,10 @@ import java.util.List;
 @RestController
 public class CountryController {
 
-    private final CountryService countryService;
+    private final RestCountryServiceImpl countryService;
 
     @Autowired
-    public CountryController(CountryService countryService) {
+    public CountryController(RestCountryServiceImpl countryService) {
         this.countryService = countryService;
     }
 
