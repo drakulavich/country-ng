@@ -40,12 +40,10 @@
         </xs:complexType>
     </xs:element>
 
-    <xs:element name="countryByIdResponse">
+    <xs:element name="getCountryResponse">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="id" type="xs:string"/>
-                <xs:element name="countryName" type="xs:string"/>
-                <xs:element name="countryCode" type="xs:string"/>
+                <xs:element name="country" type="tns:countryResponse"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
@@ -53,9 +51,7 @@
     <xs:element name="addCountryResponse">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="id" type="xs:string"/>
-                <xs:element name="countryName" type="xs:string"/>
-                <xs:element name="countryCode" type="xs:string"/>
+                <xs:element name="country" type="tns:countryResponse"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>

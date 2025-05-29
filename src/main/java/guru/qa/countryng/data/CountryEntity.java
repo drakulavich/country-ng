@@ -1,5 +1,6 @@
 package guru.qa.countryng.data;
 
+import guru.qa.xml.countryng.CountryResponse;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -41,4 +42,12 @@ public class CountryEntity {
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "last_modify_date")
     private LocalDateTime lastModifyDate;
+
+    public CountryResponse toCountryResponse() {
+        CountryResponse response = new CountryResponse();
+        response.setId(this.id.toString());
+        response.setCountryName(this.countryName);
+        response.setCountryCode(this.countryCode);
+        return response;
+    }
 }
