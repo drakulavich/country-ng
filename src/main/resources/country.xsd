@@ -78,6 +78,7 @@
             <xs:element name="id" type="xs:string"/>
             <xs:element name="countryName" type="xs:string"/>
             <xs:element name="countryCode" type="xs:string"/>
+            <xs:element name="lastModifyDate" type="xs:dateTime" minOccurs="0"/>
         </xs:sequence>
     </xs:complexType>
 

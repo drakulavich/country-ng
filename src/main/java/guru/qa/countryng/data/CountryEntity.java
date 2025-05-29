@@ -15,7 +15,12 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import javax.xml.datatype.DatatypeConfigurationException;
+import javax.xml.datatype.DatatypeFactory;
+import javax.xml.datatype.XMLGregorianCalendar;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.util.GregorianCalendar;
 import java.util.UUID;
 
 @Getter
@@ -48,6 +53,19 @@ public class CountryEntity {
         soapCountry.setId(this.id.toString());
         soapCountry.setCountryName(this.countryName);
         soapCountry.setCountryCode(this.countryCode);
+        
+        if (this.lastModifyDate != null) {
+            try {
+                GregorianCalendar gregorianCalendar = GregorianCalendar.from(
+                    this.lastModifyDate.atZone(ZoneId.systemDefault()));
+                XMLGregorianCalendar xmlGregorianCalendar = DatatypeFactory.newInstance()
+                    .newXMLGregorianCalendar(gregorianCalendar);
+                soapCountry.setLastModifyDate(xmlGregorianCalendar);
+            } catch (DatatypeConfigurationException e) {
+                throw new RuntimeException("Failed to convert LocalDateTime to XMLGregorianCalendar", e);
+            }
+        }
+        
         return soapCountry;
     }
 }
