@@ -5,6 +5,7 @@ plugins {
     id("org.springframework.boot") version "3.4.3"
     id("io.spring.dependency-management") version "1.1.7"
     id("com.google.protobuf") version "0.9.4"
+    id("com.github.edeandrea.xjc-generation") version "1.6"
 }
 
 group = "guru.qa"
@@ -29,6 +30,12 @@ dependencyManagement {
 }
 
 dependencies {
+    implementation("org.springframework.boot:spring-boot-starter-web-services") {
+        exclude(group = "org.springframework.boot", module = "spring-boot-starter-tomcat")
+    }
+    implementation("wsdl4j:wsdl4j:1.6.3")
+    xjc("org.glassfish.jaxb:jaxb-xjc:4.0.5")
+
     implementation("org.springframework.grpc:spring-grpc-spring-boot-starter")
     implementation("io.grpc:grpc-services")
     implementation("com.google.protobuf:protobuf-java-util:${dependencyManagement.importedProperties["protobuf-java.version"]}")
@@ -46,6 +53,28 @@ dependencies {
 
     annotationProcessor("org.projectlombok:lombok:1.18.34")
     compileOnly("org.projectlombok:lombok:1.18.34")
+}
+
+xjcGeneration {
+    defaultAdditionalXjcOptions = mapOf("encoding" to "UTF-8")
+
+    schemas {
+        create("wsdlSchema") {
+            schemaRootDir = file("$projectDir/src/main/resources").toString()
+            schemaFile = "country.xsd"
+            javaPackageName = "guru.qa.xml.countryng"
+            sourceSet = "main"
+        }
+    }
+}
+
+sourceSets {
+    named("main") {
+        java {
+            srcDir("src/main/java")
+            srcDir("$buildDir/generated-sources/main/xjc")
+        }
+    }
 }
 
 protobuf {
