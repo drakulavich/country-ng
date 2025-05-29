@@ -16,7 +16,7 @@
     <xs:element name="addCountryRequest">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="country" type="tns:countryInput"/>
+                <xs:element name="country" type="tns:soapCountryInput"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
@@ -25,7 +25,7 @@
         <xs:complexType>
             <xs:sequence>
                 <xs:element name="id" type="xs:string"/>
-                <xs:element name="country" type="tns:countryInput"/>
+                <xs:element name="country" type="tns:soapCountryInput"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
@@ -35,7 +35,7 @@
     <xs:element name="allCountriesResponse">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="country" type="tns:countryResponse" maxOccurs="unbounded"/>
+                <xs:element name="country" type="tns:soapCountry" maxOccurs="unbounded"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
@@ -43,7 +43,7 @@
     <xs:element name="getCountryResponse">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="country" type="tns:countryResponse"/>
+                <xs:element name="country" type="tns:soapCountry"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
@@ -51,7 +51,7 @@
     <xs:element name="addCountryResponse">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="country" type="tns:countryResponse"/>
+                <xs:element name="country" type="tns:soapCountry"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
@@ -59,21 +59,21 @@
     <xs:element name="updateCountryResponse">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="country" type="tns:countryResponse"/>
+                <xs:element name="country" type="tns:soapCountry"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
 
     <!-- CUSTOM TYPES -->
 
-    <xs:complexType name="countryInput">
+    <xs:complexType name="soapCountryInput">
         <xs:sequence>
             <xs:element name="countryName" type="xs:string"/>
             <xs:element name="countryCode" type="xs:string"/>
         </xs:sequence>
     </xs:complexType>
 
-    <xs:complexType name="countryResponse">
+    <xs:complexType name="soapCountry">
         <xs:sequence>
             <xs:element name="id" type="xs:string"/>
             <xs:element name="countryName" type="xs:string"/>

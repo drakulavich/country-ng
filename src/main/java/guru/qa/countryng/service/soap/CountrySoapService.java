@@ -35,7 +35,7 @@ public class CountrySoapService {
                 .orElseThrow(() -> new NoSuchElementException("No country with id:" + request.getId() + " found"));
 
         GetCountryResponse getResponse = new GetCountryResponse();
-        getResponse.setCountry(country.toCountryResponse());
+        getResponse.setCountry(country.toSoapCountry());
         return getResponse;
     }
 
@@ -45,7 +45,7 @@ public class CountrySoapService {
         List<CountryEntity> allCountries = countryRepository.findAll();
         AllCountriesResponse xmlCountries = new AllCountriesResponse();
         xmlCountries.getCountry().addAll(
-                allCountries.stream().map(CountryEntity::toCountryResponse).toList());
+                allCountries.stream().map(CountryEntity::toSoapCountry).toList());
 
         return xmlCountries;
     }
@@ -62,7 +62,7 @@ public class CountrySoapService {
         CountryEntity createdCountry = countryRepository.save(countryEntity);
 
         AddCountryResponse addResponse = new AddCountryResponse();
-        addResponse.setCountry(createdCountry.toCountryResponse());
+        addResponse.setCountry(createdCountry.toSoapCountry());
         return addResponse;
     }
 
@@ -81,7 +81,7 @@ public class CountrySoapService {
         CountryEntity updatedCountry = countryRepository.save(updatedCountryEntity);
 
         UpdateCountryResponse response = new UpdateCountryResponse();
-        response.setCountry(updatedCountry.toCountryResponse());
+        response.setCountry(updatedCountry.toSoapCountry());
         return response;
     }
 }
